@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MANE_GYMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DANHSACHTHONGKE">
+          <Key>
+            <PropertyRef Name="MATK" />
+          </Key>
+          <Property Name="MATK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MANV" Type="varchar" MaxLength="20" />
+          <Property Name="NGAYLAP" Type="date" />
+          <Property Name="NOIDUNG" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DICHVU">
+          <Key>
+            <PropertyRef Name="MADV" />
+          </Key>
+          <Property Name="MADV" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENDV" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIA" Type="int" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MAKH" Type="varchar" MaxLength="20" />
+          <Property Name="MANV" Type="varchar" MaxLength="20" />
+          <Property Name="MAPHONG" Type="varchar" MaxLength="20" />
+          <Property Name="MADV" Type="varchar" MaxLength="20" />
+          <Property Name="TIEN" Type="int" />
+          <Property Name="NGAY" Type="date" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENKH" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="varchar" MaxLength="10" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENNV" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="CMND" Type="varchar" MaxLength="20" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYSINH" Type="date" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="LUONG" Type="int" />
+          <Property Name="SDT" Type="varchar" MaxLength="10" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="20" />
+          <Property Name="PASS" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="MAPHONG" />
+          </Key>
+          <Property Name="MAPHONG" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENPHONG" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIA" Type="int" />
+        </EntityType>
+        <EntityType Name="THIETBI">
+          <Key>
+            <PropertyRef Name="MATB" />
+          </Key>
+          <Property Name="MATB" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENTB" Type="nvarchar" MaxLength="50" />
+          <Property Name="SOLUONG" Type="int" />
+        </EntityType>
+        <Association Name="FK__DANHSACHTH__MANV__45F365D3">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="DANHSACHTHONGKE" Type="Self.DANHSACHTHONGKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="DANHSACHTHONGKE">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MADV__412EB0B6">
+          <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICHVU">
+              <PropertyRef Name="MADV" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MADV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MAKH__3E52440B">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MANV__3F466844">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MAPHONG__403A8C7D">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MAPHONG" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MANE_GYMModelStoreContainer">
+          <EntitySet Name="DANHSACHTHONGKE" EntityType="Self.DANHSACHTHONGKE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THIETBI" EntityType="Self.THIETBI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DANHSACHTH__MANV__45F365D3" Association="Self.FK__DANHSACHTH__MANV__45F365D3">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="DANHSACHTHONGKE" EntitySet="DANHSACHTHONGKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MADV__412EB0B6" Association="Self.FK__HOADON__MADV__412EB0B6">
+            <End Role="DICHVU" EntitySet="DICHVU" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MAKH__3E52440B" Association="Self.FK__HOADON__MAKH__3E52440B">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MANV__3F466844" Association="Self.FK__HOADON__MANV__3F466844">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MAPHONG__403A8C7D" Association="Self.FK__HOADON__MAPHONG__403A8C7D">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MANE_GYMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MANE_GYMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DANHSACHTHONGKEs" EntityType="MANE_GYMModel.DANHSACHTHONGKE" />
+          <EntitySet Name="DICHVUs" EntityType="MANE_GYMModel.DICHVU" />
+          <EntitySet Name="HOADONs" EntityType="MANE_GYMModel.HOADON" />
+          <EntitySet Name="KHACHHANGs" EntityType="MANE_GYMModel.KHACHHANG" />
+          <EntitySet Name="NHANVIENs" EntityType="MANE_GYMModel.NHANVIEN" />
+          <EntitySet Name="PHONGs" EntityType="MANE_GYMModel.PHONG" />
+          <EntitySet Name="THIETBIs" EntityType="MANE_GYMModel.THIETBI" />
+          <AssociationSet Name="FK__DANHSACHTH__MANV__45F365D3" Association="MANE_GYMModel.FK__DANHSACHTH__MANV__45F365D3">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="DANHSACHTHONGKE" EntitySet="DANHSACHTHONGKEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MADV__412EB0B6" Association="MANE_GYMModel.FK__HOADON__MADV__412EB0B6">
+            <End Role="DICHVU" EntitySet="DICHVUs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MAKH__3E52440B" Association="MANE_GYMModel.FK__HOADON__MAKH__3E52440B">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MANV__3F466844" Association="MANE_GYMModel.FK__HOADON__MANV__3F466844">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MAPHONG__403A8C7D" Association="MANE_GYMModel.FK__HOADON__MAPHONG__403A8C7D">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DANHSACHTHONGKE">
+          <Key>
+            <PropertyRef Name="MATK" />
+          </Key>
+          <Property Name="MATK" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MANV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYLAP" Type="DateTime" Precision="0" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NHANVIEN" Relationship="MANE_GYMModel.FK__DANHSACHTH__MANV__45F365D3" FromRole="DANHSACHTHONGKE" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="DICHVU">
+          <Key>
+            <PropertyRef Name="MADV" />
+          </Key>
+          <Property Name="MADV" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENDV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIA" Type="Int32" />
+          <NavigationProperty Name="HOADONs" Relationship="MANE_GYMModel.FK__HOADON__MADV__412EB0B6" FromRole="DICHVU" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAKH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MANV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAPHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MADV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TIEN" Type="Int32" />
+          <Property Name="NGAY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DICHVU" Relationship="MANE_GYMModel.FK__HOADON__MADV__412EB0B6" FromRole="HOADON" ToRole="DICHVU" />
+          <NavigationProperty Name="KHACHHANG" Relationship="MANE_GYMModel.FK__HOADON__MAKH__3E52440B" FromRole="HOADON" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="MANE_GYMModel.FK__HOADON__MANV__3F466844" FromRole="HOADON" ToRole="NHANVIEN" />
+          <NavigationProperty Name="PHONG" Relationship="MANE_GYMModel.FK__HOADON__MAPHONG__403A8C7D" FromRole="HOADON" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOADONs" Relationship="MANE_GYMModel.FK__HOADON__MAKH__3E52440B" FromRole="KHACHHANG" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LUONG" Type="Int32" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PASS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DANHSACHTHONGKEs" Relationship="MANE_GYMModel.FK__DANHSACHTH__MANV__45F365D3" FromRole="NHANVIEN" ToRole="DANHSACHTHONGKE" />
+          <NavigationProperty Name="HOADONs" Relationship="MANE_GYMModel.FK__HOADON__MANV__3F466844" FromRole="NHANVIEN" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="MAPHONG" />
+          </Key>
+          <Property Name="MAPHONG" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENPHONG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIA" Type="Int32" />
+          <NavigationProperty Name="HOADONs" Relationship="MANE_GYMModel.FK__HOADON__MAPHONG__403A8C7D" FromRole="PHONG" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="THIETBI">
+          <Key>
+            <PropertyRef Name="MATB" />
+          </Key>
+          <Property Name="MATB" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENTB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SOLUONG" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__DANHSACHTH__MANV__45F365D3">
+          <End Type="MANE_GYMModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="MANE_GYMModel.DANHSACHTHONGKE" Role="DANHSACHTHONGKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="DANHSACHTHONGKE">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MADV__412EB0B6">
+          <End Type="MANE_GYMModel.DICHVU" Role="DICHVU" Multiplicity="0..1" />
+          <End Type="MANE_GYMModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICHVU">
+              <PropertyRef Name="MADV" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MADV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MAKH__3E52440B">
+          <End Type="MANE_GYMModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="MANE_GYMModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MANV__3F466844">
+          <End Type="MANE_GYMModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="MANE_GYMModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MAPHONG__403A8C7D">
+          <End Type="MANE_GYMModel.PHONG" Role="PHONG" Multiplicity="0..1" />
+          <End Type="MANE_GYMModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MAPHONG" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MANE_GYMModelStoreContainer" CdmEntityContainer="MANE_GYMEntities">
+          <EntitySetMapping Name="DANHSACHTHONGKEs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.DANHSACHTHONGKE">
+              <MappingFragment StoreEntitySet="DANHSACHTHONGKE">
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="MATK" ColumnName="MATK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DICHVUs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.DICHVU">
+              <MappingFragment StoreEntitySet="DICHVU">
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="TENDV" ColumnName="TENDV" />
+                <ScalarProperty Name="MADV" ColumnName="MADV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADONs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="TIEN" ColumnName="TIEN" />
+                <ScalarProperty Name="MADV" ColumnName="MADV" />
+                <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TENKH" ColumnName="TENKH" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TENNV" ColumnName="TENNV" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+                <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THIETBIs">
+            <EntityTypeMapping TypeName="MANE_GYMModel.THIETBI">
+              <MappingFragment StoreEntitySet="THIETBI">
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="TENTB" ColumnName="TENTB" />
+                <ScalarProperty Name="MATB" ColumnName="MATB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

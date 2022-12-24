@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="caef78aa32e548209b7cfd3f046d7507" Name="Diagram1">
+        <EntityTypeShape EntityType="MANE_GYMModel.DANHSACHTHONGKE" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="MANE_GYMModel.DICHVU" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="MANE_GYMModel.HOADON" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="MANE_GYMModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="MANE_GYMModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="MANE_GYMModel.PHONG" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="MANE_GYMModel.THIETBI" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="MANE_GYMModel.FK__DANHSACHTH__MANV__45F365D3" />
+        <AssociationConnector Association="MANE_GYMModel.FK__HOADON__MADV__412EB0B6" />
+        <AssociationConnector Association="MANE_GYMModel.FK__HOADON__MAKH__3E52440B" />
+        <AssociationConnector Association="MANE_GYMModel.FK__HOADON__MANV__3F466844" />
+        <AssociationConnector Association="MANE_GYMModel.FK__HOADON__MAPHONG__403A8C7D" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
