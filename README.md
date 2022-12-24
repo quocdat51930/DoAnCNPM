@@ -5,5 +5,4 @@ branch master: https://github.com/quocdat51930/DoAnCNPM/tree/master
 Username : a
 # Mật khẩu
 Password : 1
-\n
-r
+#52000708_HuynhTrieuPhuQuoc_51900030_NguyenQuocDat
